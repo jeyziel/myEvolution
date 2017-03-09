@@ -1,0 +1,10 @@
+{
+    "autoload":{
+        "psr-4": {
+            "App\\Classes\\" : "App/Classes",
+            "App\\Interfaces\\" : "App/Interface",
+            "App\\Models\\" : "App/Models",
+            "Jg\\Database\\" : "Jg/Database"
+        }
+    }
+}
