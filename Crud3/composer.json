@@ -1,0 +1,8 @@
+{
+	"autoload": {
+		"prs-4":{
+			"App\\": "./App",
+			"JG\\": "./vendor/JG"
+		}
+	}
+}
