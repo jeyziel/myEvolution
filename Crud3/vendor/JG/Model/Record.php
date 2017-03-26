@@ -70,22 +70,24 @@ abstract class Record extends QueryBuilder implements RecordInterface
 		try
 		{
 			$pdo = $this->conn->prepare($this->querySelect());
-			if ($this->value)
+			if (!is_null($this->value))
 			{
 				$pdo->bindValue(":{$this->field}",$this->value);
 			}
-			$result = $pdo->execute();
+			$pdo->execute();
 			
-			if ($result)
+			if ($pdo->rowCount())
 			{
+
 				while($row = $pdo->fetchObject(get_class($this)))
                 {
                     //armazena os resultado no array
                     $results[] = $row;
                     
                 }
+                	return $results;
 			}
-			return $results;
+		
 
 
 		}

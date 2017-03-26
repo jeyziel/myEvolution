@@ -28,6 +28,10 @@ class Bootstrap
 
             if (isset($newUrl[2]))
                 $rotaComMethod = $newUrl[1] . "/" . $newUrl[2] . "/";
+            else
+            	$rotaComMethod = '';
+
+
 
             if ($url == $routes[0] OR strcmp($routes[0], $rotaComMethod) == 0) 
             {

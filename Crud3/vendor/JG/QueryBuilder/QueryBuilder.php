@@ -11,8 +11,8 @@ abstract class QueryBuilder
 	private $where  = null;
 	private $order = null;
 	private $variavel = null;
-	protected $field;
-	protected $value;
+	protected $field = null;
+	protected $value = null;
 
 	/**
 	*pega os campos da tabela

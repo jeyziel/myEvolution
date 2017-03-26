@@ -3,7 +3,9 @@
 use JG\Init\Route;
 
 
-Route::add(['/','Teste','teste']);
+Route::add(['/','Home','index']);
+Route::add(['/cadastro','Home','cadastrar']);
+
 
 
 

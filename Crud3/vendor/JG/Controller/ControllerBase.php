@@ -31,4 +31,13 @@ abstract class ControllerBase
         require_once("../App/Views/{$this->action}.php");
     }
 
+    public function input($post = null)
+    {
+    	if (isset($post))
+    	{
+    		return filter_input(INPUT_POST, $post);
+    	}
+    	return false;
+    }
+
 }
