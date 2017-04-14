@@ -1,0 +1,22 @@
+<div class="container">
+
+<h1 class="h1"><?php echo $this->getTitle();?></h1>
+    <form action="/posts/<?php echo $this->view->post->id;?>/update" method="post" accept-charset="utf-8">
+
+        <div class="form-group">
+            <label for="title">Titulo</label>
+            <input  title="title" type="text" value="<?php echo $this->view->post->title; ?>" name="title" class ="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="content">content</label>
+            <textarea name="content" class="form-control" rows="15">
+                <?php echo $this->view->post->content; ?>
+            </textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="/posts/<?php echo $this->view->post->id; ?>/edit " class="btn btn-default">Cancelar</a>
+    
+    </form>
+</div>

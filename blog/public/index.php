@@ -1,8 +1,5 @@
-<?php 
+<?php
 
-require "../vendor/autoload.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 
-use JGFW\Database\Connection;
-
-$conn = new Connection();
-$conn->open();
+require_once __DIR__ ."/../vendor/JGFW/Init/bootstrap.php";

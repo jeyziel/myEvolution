@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><?php $this->getTitle(" | ")?> JEYZIEL FW</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!-- HTML5 shim e Respond.js para suporte no IE8 de elementos HTML5 e media queries -->
+    <!-- ALERTA: Respond.js não funciona se você visualizar uma página file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <?php require_once __DIR__ . "/menu.phtml"; ?>
+    <?php $this->content() ?>
+    
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+</body>
+</html>
