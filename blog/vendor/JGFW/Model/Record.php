@@ -139,11 +139,20 @@ abstract class Record extends QueryBuilder implements RecordInterface
 
 	public function delete()
 	{
-		$pdo = $this->conn->prepare($this->queryDelete());
-		if ($this->value)
+		try
 		{
-			$pdo->bindValue(":$this->field",$this->value);
+			$pdo = $this->conn->prepare($this->queryDelete());
+			if ($this->value)
+			{
+				$pdo->bindValue(":$this->field",$this->value);
+			}
+			$pdo->execute();
+
+			return $pdo->rowCount();
 		}
-		return $pdo->execute();
+		catch(Exception $e)
+		{
+			echo $e->getMessage();
+		}
 	}
 }

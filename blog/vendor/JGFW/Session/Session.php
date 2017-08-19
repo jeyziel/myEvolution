@@ -9,6 +9,13 @@ namespace JGFW\Session;
 
 class Session
 {
+    public function __construct()
+    {
+        if(!session_id())
+        {
+            session_start();
+        }
+    }
     public static function set($key,$value)
     {
         $_SESSION[$key] = $value;

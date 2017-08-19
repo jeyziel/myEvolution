@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use JGFW\Controller\{BaseController,Container,Redirect};
 use JGFW\Database\Transaction;
+use JGFW\Session\Session;
 
 class Posts extends BaseController
 {
@@ -14,19 +15,31 @@ class Posts extends BaseController
     {
         parent::__construct();
         $this->posts = Container::getModel('Posts');
+        
+        
     }
 
 
     public function index()
-    {
-        
+    { 
+        if ((Session::get('success')))
+        {
+            $this->view->success = Session::get('success');
+            Session::free('success');
+        }
+        //caso acorrer erro
+        if ((Session::get('error')))
+        {  
+            $this->view->sucess = Session::get('error');
+            Session::free('error');
+        }
         $this->setTitle('Postagens');
         $this->view->posts = $this->posts->all();
         //$texto = $this->view->posts[0]->content;
        // $texto = substr($texto, 0, strrpos(substr($texto, 0, 50), ' ')) . '...';
       //  echo $text = strrpos(substr($texto, 0, 50), ' ');
         Transaction::close();
-        $this->renderView('posts/index','layout');
+        return $this->renderView('posts/index','layout');
         
     }
 
@@ -43,18 +56,18 @@ class Posts extends BaseController
         if(isset($this->view->post->title))
         {
             $this->setTitle($this->view->post->title);
-            $this->renderView('posts/show','layout');
+            return $this->renderView('posts/show','layout');
         }
         else
         {
-            echo 'affs';
+            return Redirect::route('/posts');
         }
     }
 
     public function create()
     {
         $this->setTitle('Criar novo post');
-        $this->renderView('posts/create','layout');
+        return $this->renderView('posts/create','layout');
     }
 
     /** pega o request post e salva no banco de dados **/
@@ -72,7 +85,7 @@ class Posts extends BaseController
 
             if($this->posts->store())
             {
-                Redirect::route('/posts');
+                return Redirect::route('/posts');
             }
             else
             {
@@ -99,13 +112,13 @@ class Posts extends BaseController
             if ($this->view->post)
             {
                 $this->setTitle('Edit Post - ' . $this->view->post->title);
-                $this->renderView('posts/edit','layout');
+                return $this->renderView('posts/edit','layout');
 
                 Transaction::close();
             }
             else
             {
-               Redirect::route('/posts');
+               return Redirect::route('/posts');
             }
 
 
@@ -127,11 +140,15 @@ class Posts extends BaseController
         
         if($this->posts->fromArray($data)->where('id','=',$id)->update())
         {
-            Redirect::route('/posts');
+            return Redirect::route('/posts',[
+                'success' => ["post {$this->posts->title} atualizado com sucesso"]
+            ]);
         }
         else
         {
-            Redirect::route('/posts/{$id}/edit');
+            return Redirect::route('/posts/{$id}/edit',[
+                'error' => ["Não foi possivel atualizar o post {$this->posts->title}"]
+            ]);
         }
 
         Transaction::close();
@@ -146,11 +163,15 @@ class Posts extends BaseController
         {
             if($this->posts->where('id','=',$id)->delete())
             {
-                Redirect::route('/posts');
+                return Redirect::route('/posts',[
+                    'success' => ["post {$this->posts->title} excluido com sucesso"]
+                ]);
             }
             else
             {
-                echo 'nao foi possivel excluir';
+               return Redirect::route('/posts',[
+                   'error' => ["Erro ao excluir o post"]
+               ]);
             }
             Transaction::close();
         }

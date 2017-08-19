@@ -8,6 +8,13 @@
         </h1>
     </div>
 
+    <?php 
+        $this->renderView('alerts/_success');
+        $this->renderView('alerts/_errors');
+
+    ?>
+
+
     <?php foreach($this->view->posts as $post): ?>
         <div class="row">
             <a href="/posts/<?php echo $post->id;?>/show"><h3 class="h3"><?php echo $post->title; ?></h3></a>

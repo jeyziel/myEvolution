@@ -27,9 +27,9 @@ class BaseController
     protected function getTitle($separator = null)
     {
         if(!(is_null($separator)))
-            echo $this->pageTitle . " " . $separator . " ";
+            return $this->pageTitle . " " . $separator . " ";
         else
-            echo $this->pageTitle;
+            return $this->pageTitle;
 
     }
     
@@ -41,11 +41,11 @@ class BaseController
 
         if ($layoutPath)
         {
-            $this->layout();
+            return $this->layout();
         }
         else
         {
-            $this->content();
+            return $this->content();
         }
     }
 
@@ -53,7 +53,7 @@ class BaseController
     {
         if (file_exists(__DIR__ . "/../../../App/Views/{$this->viewPath}.phtml"))
         {
-            require_once __DIR__ . "/../../../App/Views/{$this->viewPath}.phtml";
+            return require_once __DIR__ . "/../../../App/Views/{$this->viewPath}.phtml";
         }
         else
         {
@@ -65,7 +65,7 @@ class BaseController
     {
         if (file_exists(__DIR__ . "/../../../App/Views/{$this->layoutPath}.phtml")) 
         {
-            require_once __DIR__ . "/../../../App/Views/{$this->layoutPath}.phtml";
+            return require_once __DIR__ . "/../../../App/Views/{$this->layoutPath}.phtml";
         } 
         else
         {
