@@ -5,7 +5,11 @@
 {% endif %}
 
 {% if flash.getMessage('error') %}
-<div class="alert alert-error">
+<div class="alert alert-warning">
 	{{ flash.getMessage('error') | first }}
 </div>
 {% endif %}
+
+
+
+

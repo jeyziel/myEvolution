@@ -47,6 +47,14 @@ class AuthService implements AuthServiceInterface
 
 	}
 
+	public function changePassword($password)
+	{
+		$data = [
+			'password' => Password::hash($password),
+		];
+		$this->userRepository->setPassword($data);
+	}
+
 	public function logout()
 	{
 		Session::destroy('user');

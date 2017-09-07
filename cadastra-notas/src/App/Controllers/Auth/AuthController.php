@@ -29,7 +29,7 @@ class AuthController extends Controller
     {
         return $view->render($response,'auth/signup.twig',['nome' => 'salve']);
     }
-
+    
     public function postSignUp(Request $request, Response $response)
     {
         $validation = (new Validator())->make($request,SignupForm::rules());
@@ -72,6 +72,10 @@ class AuthController extends Controller
         $this->message('info','volte sempre');
         return $response->withRedirect('/');
     }
+
+    
+
+    
 
 
 }

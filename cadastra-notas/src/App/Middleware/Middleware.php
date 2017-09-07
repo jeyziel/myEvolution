@@ -12,4 +12,11 @@ class Middleware
 	{
 		$this->container = $container;
 	}
+
+	public function __get( $name )
+	{
+		if ( $this->container->get( $name ) ) {
+			return $this->container->get( $name );
+		}
+	}
 }

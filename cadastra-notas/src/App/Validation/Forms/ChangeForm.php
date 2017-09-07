@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Validatio\Forms;
+namespace App\Validation\Forms;
 
 use Respect\Validation\Validator as V;
 
@@ -10,6 +10,11 @@ class ChangeForm
 
     public static function rules()
     {
-        return [];
+        return [
+           'password_old' => V::noWhitespace()
+                                ->notEmpty()
+                                ->matchesPassword(),
+           'password' => V::noWhitespace()->notEmpty(),
+        ];
     }
 }
