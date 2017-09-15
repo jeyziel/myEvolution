@@ -14,7 +14,7 @@ return [
         ],
     ],
     'environments' => [
-        'default_migration_table' => 'migration',
+        'default_migration_table' => 'migrations',
         'default_database' => 'dev',
         'dev' => [
             'adapter' => 'mysql',
@@ -22,13 +22,17 @@ return [
         	'name' => 'cms_blog',
 	        'user' => 'root',
 	        'pass' => 'root',
-	        'charset' => 'utf-8',
-	        'collation' => 'utf8_unicode_ci',
-	        'table_prefix' => '',
-	        'table_suffix' => '',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
         ],
         'prod' => [
-
+            'adapter' => 'mysql',
+            'host' => 'localhost',
+            'name' => 'cms_blog',
+            'user' => 'root',
+            'pass' => 'root',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
         ],
     ],
 ];
