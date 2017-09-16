@@ -21,5 +21,7 @@ class CreateUsers extends AbstractMigration
         $this->dropTable('users');
     }
 
+   
+
 
 }
