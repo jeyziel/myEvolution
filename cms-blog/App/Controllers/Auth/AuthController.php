@@ -3,6 +3,8 @@
 namespace App\Controllers\Auth;
 
 use App\Controllers\Controller;
+use App\Validation\Forms\SignupForm;
+use App\Validation\Validator;
 use Slim\Views\Twig;
 use Psr\Http\Message\{
     ServerRequestInterface as Request,
@@ -16,5 +18,11 @@ class AuthController
 		return $view->render($response,'auth/signup.twig');
 	}
 
-	public function postSignUp()
+	public function postSignUp(Request $request, Response $response, Twig $view)
+	{
+		$validation = (new Validator())->make($request, SignupForm::rules());
+
+		return $response->withRedirect('/auth/signup');
+		
+	}
 }
