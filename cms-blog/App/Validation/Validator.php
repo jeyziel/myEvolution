@@ -22,7 +22,7 @@ class Validator implements ValidatorInterface
 		return $this;
 	}
 
-	public function fails()
+	public function isFails()
 	{
 		return !empty($this->errors);
 	}

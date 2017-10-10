@@ -9,8 +9,8 @@ class SignupForm
 	public static function rules()
 	{
 		return [
-            'name' => V::notEmpty()->alpha(),
-            'email' => V::noWhitespace()->notEmpty()->email(),
+            'username' => V::notEmpty()->alpha(),
+            'email' => V::notEmpty()->noWhitespace()->email(),
             'password' => V::notEmpty()->noWhitespace()->alnum()
         ];
 	}

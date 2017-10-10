@@ -30,13 +30,15 @@ class AuthController
 	public function postSignUp(Request $request, Response $response, Twig $view)
 	{
 		$validation = (new Validator())->make($request, SignupForm::rules());
-
-		$store = $this->repository->create([
-			'username' => 'jeyzielGama',
-			'email' => 'gato@hotmal.com',
-			'password' => '12345678',
-			'roles' => 'user',
-		]);
+		if (!$validation->isFails()){
+			$this->repository->create([
+				'username' => $request->getParam('username'),
+				'email' => $request->getParam('email'),
+				'password' => $request->getParam('password'),
+				'roles' => 'user',
+			]);
+			return $response->withRedirect('/');
+		}
 
 		return $response->withRedirect('/auth/signup');
 		
