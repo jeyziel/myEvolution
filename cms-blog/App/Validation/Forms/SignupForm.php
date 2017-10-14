@@ -10,7 +10,7 @@ class SignupForm
 	{
 		return [
             'username' => V::notEmpty()->alpha(),
-            'email' => V::notEmpty()->noWhitespace()->email(),
+            'email' => V::notEmpty()->noWhitespace()->email()->EmailAvailable(),
             'password' => V::notEmpty()->noWhitespace()->alnum()
         ];
 	}

@@ -20,7 +20,7 @@ $capsule->addConnection([
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 //custom validations
-//v::with('App\\Validation\\Rules\\');
+v::with('App\\Validation\\Rules\\');
 require __DIR__ . '/../App/middleware.php';
 require __DIR__.'/../App/routes.php';
 
