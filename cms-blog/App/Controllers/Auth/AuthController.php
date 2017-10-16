@@ -15,11 +15,11 @@ use Psr\Http\Message\{
 
 class AuthController
 {
-	private $repository;
+	private $UserRepository;
 
 	public function __construct()
 	{
-		$this->repository = new UserRepository();
+		$this->UserRepository = new UserRepository();
 	}
 
 	public function getSignUp(Request $request,Response $response,Twig $view)
@@ -27,20 +27,30 @@ class AuthController
 		return $view->render($response,'auth/signup.twig');
 	}
 
-	public function postSignUp(Request $request, Response $response, Twig $view)
+	public function postSignUp(Request $request, Response $response)
 	{
 		$validation = (new Validator())->make($request, SignupForm::rules());
 		if (!$validation->isFails()){
-			$this->repository->create([
+			$this->UserRepository->create([
 				'username' => $request->getParam('username'),
 				'email' => $request->getParam('email'),
 				'password' => $request->getParam('password'),
 				'roles' => 'user',
 			]);
-			return $response->withRedirect('/');
+			return $response->withRedirect('/');	
 		}
-
-		return $response->withRedirect('/auth/signup');
-		
+		return $response->withRedirect('/auth/signup');	
 	}
+
+	public function getSignIn(Request $request, Response $response, Twig $view)
+	{
+		return $view->render($response, 'auth/signin.twig');
+	}
+
+	public function postSignIn(Request $request, Response $response)
+	{
+
+	}
+
+
 }
