@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class User extends Model
 {
 	protected $table = "users";
@@ -14,5 +15,10 @@ class User extends Model
 		'password',
 		'roles'
 	];
+
+	public function post()
+    {
+        return $this->hasMany(Post::class);
+    }
 
 }

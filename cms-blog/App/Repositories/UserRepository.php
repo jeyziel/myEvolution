@@ -11,4 +11,12 @@ class UserRepository extends AbstractRepository
 	{
 		return User::class;
 	}
+
+	public function findEmail($email)
+	{
+		return $this->model->where('email',$email)->first();	
+	}
+
+
+	
 }

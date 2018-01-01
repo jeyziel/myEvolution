@@ -6,7 +6,7 @@ use App\Repositories\Contracts\RepositoryInterface;
 
 abstract class AbstractRepository implements RepositoryInterface
 {
-	private $model;
+	protected $model;
 
 	public function __construct()
 	{

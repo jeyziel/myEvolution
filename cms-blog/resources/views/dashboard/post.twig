@@ -1,0 +1,46 @@
+{% extends 'templates/app.twig' %}
+
+{% block content %}
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel-default">
+            <div class="panel-heading">Login</div>
+            <div class="panel-body">
+                <form action="{{ path_for('create.post') }}" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Titulo</label>
+                        <input type="name" name="title" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descrição</label>
+                        <input type="name" name="description" class="form-control" >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="categories" class="control-label">Categorias</label>
+                        {% for category in categories %}
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="category_id[]"
+                                           value="{{ category.id }}" >
+                                    {{ category.name }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Imagem</label>
+                        <input type="file" name="image" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Conteudo</label>
+                        <textarea name="content" id="content" cols="30" rows="10" class="form-control">
+
+                        </textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Criar Categoria</button>
+                    {{ csrf.field | raw }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
